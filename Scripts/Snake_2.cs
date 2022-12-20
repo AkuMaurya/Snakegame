@@ -25,7 +25,7 @@ public class Snake_2 : MonoBehaviour
         HandleInput();
         // HandleGridMovement();    
 
-        
+
     }
 
     private void FixedUpdate(){

@@ -31,7 +31,6 @@ public class Snake : MonoBehaviour
             segments[i].position = segments[i-1].position;
         }
 
-
         Velocity();
         
         transform.eulerAngles = new Vector3(0, 0, GetAngleFromVector(gridMoveDirection));
@@ -93,8 +92,9 @@ public class Snake : MonoBehaviour
     }
 
     private void Reduce(){
+        // Transform seg = segments.RemoveAt(segments.Count-1);
+        Debug.Log("len" + segments.Count);
         Destroy(segments[segments.Count-1].gameObject);
-        segments.RemoveAt(segments.Count-1);
     }
 
     public void Velocity(){
@@ -104,6 +104,7 @@ public class Snake : MonoBehaviour
             Mathf.Round(this.transform.position.x) + gridMoveDirection.x + speed,
             Mathf.Round(this.transform.position.y) + gridMoveDirection.y + speed,
             0.0f);
+            Speed = false;
         }
         else{
             this.transform.position = new Vector3(
@@ -118,6 +119,7 @@ public class Snake : MonoBehaviour
         UIManger uiManager = GetComponent<UIManger>();
         if(Score2x){
             uiManager._score += 2; 
+            Score2x = false;
         }
         else{
             uiManager._score += 1; 
@@ -127,10 +129,10 @@ public class Snake : MonoBehaviour
     public void Damage(){
         if(Shield){
             Debug.Log("Shield is active");
+            Shield = false;
         }
         else{
             Restart.SetActive(true);
-            Time.timeScale = 0f;
         }
     }
 
@@ -148,7 +150,7 @@ public class Snake : MonoBehaviour
         }
         if(other.tag == "Obstacle"){
             Restart.SetActive(true);
-            Time.timeScale = 0f;
+            this.enabled = false;
         }
         
     }   

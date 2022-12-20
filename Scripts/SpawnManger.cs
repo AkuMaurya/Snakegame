@@ -11,6 +11,8 @@ public class SpawnManger : MonoBehaviour
     [SerializeField]
     private int PowerUpId;
 
+    private int randomPowerup;
+
     private void Start(){
         StartCoroutine(PowerupSpawnRoutin()); 
     }
@@ -34,7 +36,7 @@ public class SpawnManger : MonoBehaviour
     IEnumerator PowerupSpawnRoutin()
     {
        
-            int randomPowerup = Random.Range(0,3);
+            randomPowerup = Random.Range(0,3);
             Vector2 gmobj = powerUps[randomPowerup].transform.position = RandomizePosition();
             GameObject power = Instantiate(powerUps[randomPowerup],new Vector3(gmobj.x,gmobj.y,0),Quaternion.identity);
             yield return new WaitForSeconds(5.0f); 
@@ -45,17 +47,17 @@ public class SpawnManger : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other){
         if(other.tag == "Player"){
             Snake player = other.GetComponent<Snake>();
-            if(PowerUpId==0)
+            if(randomPowerup==0)
                 {
                     player.Speed = true;
                     player.Velocity();
                 }
-                else if(PowerUpId==1)
+                else if(randomPowerup==1)
                 {
                     player.Shield = true;
                     player.Damage();
                 }
-                else if(PowerUpId==2)
+                else if(randomPowerup==2)
                 {
                     player.Score2x = true;
                     player.ScoreGain();
