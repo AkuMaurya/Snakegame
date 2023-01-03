@@ -21,11 +21,9 @@ public class Pausemenu : MonoBehaviour
 
     public void Restart()
     {
-        UIManger uiManager = GetComponent<UIManger>();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         Debug.Log("Button Clicked");
-        uiManager._score = 0;
-        uiManager.scoreText.text = "Score: ";
+        
     }
 
 }

@@ -1,3 +1,4 @@
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,23 +8,18 @@ public class UIManger : MonoBehaviour
 {
     public Text scoreText;
     public int _score;
+    public Snake player;
 
     public void UpdateScore()
     {
         _score +=    10;
         scoreText.text = "Score: " + _score;
+
+
+        if(!player.Restart.activeSelf){
+        _score = 0;
+        scoreText.text = "Score: ";
     }
-
-    // public void ShowTitleScreen()
-    // {
-    //     titleScreen.SetActive(true);
-    // }
-
-    // public void HideTitleScreen()
-    // {
-    //     titleScreen.SetActive(false);
-    //     score = 0;
-    //     scoreText.text = "Score: ";
-    // }
+    }   
 
 }
